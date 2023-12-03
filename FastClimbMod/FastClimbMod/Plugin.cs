@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 using System;
@@ -16,6 +17,7 @@ namespace FastClimbMod
         private const string modBase = "FastClimbMod";
         private const string modVer = "1.0.0";
 
+        internal static ConfigEntry<float> climbSpeedConfig;
         private readonly Harmony harmony = new HarmonyLib.Harmony(modGUID);
         private static ClimbMod Instance;
         internal ManualLogSource wls;
@@ -26,6 +28,8 @@ namespace FastClimbMod
             }
             wls = BepInEx.Logging.Logger.CreateLogSource(modGUID);
             wls.LogInfo("FastClimbMod loaded");
+            
+            climbSpeedConfig = Config.Bind("FastClimbMod", "ClimbSpeed", 20f, "Adjust the climbing speed multiplier \nNORMAL: 20f \nDEFAULT: 4f");
             harmony.PatchAll(typeof(ClimbMod));
             harmony.PatchAll(typeof(Patches.PlayerControllerPatch));
         }

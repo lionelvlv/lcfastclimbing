@@ -15,7 +15,7 @@ namespace FastClimbMod.Patches
         [HarmonyPostfix]
         private static void Postfix(ref float ___climbSpeed)
         {
-            ___climbSpeed = 20f;
+            ___climbSpeed = FastClimbMod.ClimbMod.climbSpeedConfig.Value;
         }
     }
 }
