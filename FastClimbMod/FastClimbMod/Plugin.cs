@@ -15,7 +15,7 @@ namespace FastClimbMod
     {
         private const string modGUID = "lionelvlv.LCFastClimbMod";
         private const string modBase = "FastClimbMod";
-        private const string modVer = "1.0.0";
+        private const string modVer = "1.0.1";
 
         internal static ConfigEntry<float> climbSpeedConfig;
         private readonly Harmony harmony = new HarmonyLib.Harmony(modGUID);
@@ -29,7 +29,7 @@ namespace FastClimbMod
             wls = BepInEx.Logging.Logger.CreateLogSource(modGUID);
             wls.LogInfo("FastClimbMod loaded");
             
-            climbSpeedConfig = Config.Bind("FastClimbMod", "ClimbSpeed", 20f, "Adjust the climbing speed multiplier \nNORMAL: 20f \nDEFAULT: 4f");
+            climbSpeedConfig = Config.Bind("FastClimbMod", "ClimbSpeed", 20f, "Adjust the climbing speed multiplier \nFAST: 20f \nDEFAULT: 4f");
             harmony.PatchAll(typeof(ClimbMod));
             harmony.PatchAll(typeof(Patches.PlayerControllerPatch));
         }
